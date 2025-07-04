@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Art Heritage</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 70px;
+    margin-right: 10px;
+  }
+  
+  .site-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .top-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    transition: color 0.3s ease;
+  }
+  
+  .top-nav ul li a:hover {
+    color: #e67e22;
+  }
+  
+  .auth .btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    background: #e67e22;
+    color: #fff;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  .auth .btn:hover {
+    background: #d35400;
+  }
+  
+        canvas { border: 1px solid black; cursor: crosshair; background-color: white; }
+        .toolbar { margin-bottom: 10px; }
+        .toolbar button, .toolbar input { margin: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+		<div class="logo">
+			<li><a href="index.html"/><img src="image/logo.png" alt="Logo" /></a></li>
+		  
+		  <span class="site-name">Indian Art Heritage</span>
+		</div>
+		<nav class="top-nav">
+			<ul>
+				<li><a href="index.html"/>Home</a></li>
+				<li><a href="trending.html"/>Trending</a></li>
+				<li><a href="post.html"/>Post</a></li>
+				<li><a href="shop.html"/>Shop</a></li>
+				<li><a href="Event.html"/>Event</a></li>
+				<li><a href="Feedback.html"/>Feedback</a></li>
+				<li><a href="Support.html"/>Support</a></li>
+		  <li><a href="newidea.html"/>Brush Game</a></li>
+			  </ul>
+		</nav>
+		<div class="auth">
+		  <a href="login.html" class="btn">Login/Register</a>
+		</div>
+	  </header>
+    <div class="toolbar">
+        <input type="color" id="colorPicker" value="#000000">
+        <input type="range" id="brushSize" min="1" max="20" value="5">
+        <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="1">
+        <button onclick="clearCanvas()">Clear</button>
+        <button onclick="toggleEraser()">Eraser</button>
+        <button onclick="drawRectangle()">Rectangle</button>
+        <button onclick="drawCircle()">Circle</button>
+        <button onclick="drawLine()">Line</button>
+        <button onclick="copyToClipboard()">Copy</button>
+        <button onclick="pasteFromClipboard()">Paste</button>
+        <button onclick="saveImage()">Save</button>
+        <button onclick="undo()">Undo</button>
+        <input type="file" id="imageLoader" accept="image/*">
+    </div>
+    <canvas id="paintCanvas" width="800" height="500"></canvas>
+    
+    <script>
+        const canvas = document.getElementById("paintCanvas");
+        const ctx = canvas.getContext("2d");
+        let painting = false;
+        let color = "#000000";
+        let brushSize = 5;
+        let opacity = 1;
+        let eraserMode = false;
+        let shapeMode = "free";
+        let startX, startY;
+        let clipboardImage = null;
+        let undoStack = [];
+
+        function saveState() {
+            undoStack.push(canvas.toDataURL());
+            if (undoStack.length > 10) undoStack.shift();
+        }
+
+        function undo() {
+            if (undoStack.length === 0) return;
+            const img = new Image();
+            img.src = undoStack.pop();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+        }
+
+        document.getElementById("colorPicker").addEventListener("input", (e) => {
+            color = e.target.value;
+            eraserMode = false;
+        });
+
+        document.getElementById("brushSize").addEventListener("input", (e) => {
+            brushSize = e.target.value;
+        });
+
+        document.getElementById("opacity").addEventListener("input", (e) => {
+            opacity = e.target.value;
+        });
+
+        document.getElementById("imageLoader").addEventListener("change", loadImage);
+
+        canvas.addEventListener("mousedown", (event) => {
+            saveState();
+            startX = event.offsetX;
+            startY = event.offsetY;
+            painting = true;
+        });
+
+        canvas.addEventListener("mouseup", (event) => {
+            if (shapeMode !== "free") {
+                drawShape(event.offsetX, event.offsetY);
+            }
+            painting = false;
+            ctx.beginPath();
+        });
+
+        canvas.addEventListener("mousemove", draw);
+
+        function draw(event) {
+            if (!painting || shapeMode !== "free") return;
+            ctx.lineWidth = brushSize;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = eraserMode ? "rgba(255, 255, 255, " + opacity + ")" : `rgba(${hexToRgb(color)}, ${opacity})`;
+            ctx.lineTo(event.offsetX, event.offsetY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(event.offsetX, event.offsetY);
+        }
+
+        function drawShape(x, y) {
+            ctx.strokeStyle = `rgba(${hexToRgb(color)}, ${opacity})`;
+            ctx.lineWidth = brushSize;
+            if (shapeMode === "rectangle") {
+                ctx.strokeRect(startX, startY, x - startX, y - startY);
+            } else if (shapeMode === "circle") {
+                let radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
+                ctx.beginPath();
+                ctx.arc(startX, startY, radius, 0, Math.PI * 2);
+                ctx.stroke();
+            } else if (shapeMode === "line") {
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            }
+            shapeMode = "free";
+        }
+
+        function drawRectangle() { shapeMode = "rectangle"; }
+        function drawCircle() { shapeMode = "circle"; }
+        function drawLine() { shapeMode = "line"; }
+        function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+        function toggleEraser() { eraserMode = !eraserMode; shapeMode = "free"; }
+        function copyToClipboard() { clipboardImage = canvas.toDataURL(); }
+        function pasteFromClipboard() { if (!clipboardImage) return; let img = new Image(); img.src = clipboardImage; img.onload = () => ctx.drawImage(img, 0, 0); }
+        function saveImage() { const link = document.createElement('a'); link.download = 'painting.png'; link.href = canvas.toDataURL(); link.click(); }
+
+        function loadImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = function() {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function hexToRgb(hex) {
+            let bigint = parseInt(hex.substring(1), 16);
+            let r = (bigint >> 16) & 255;
+            let g = (bigint >> 8) & 255;
+            let b = bigint & 255;
+            return `${r}, ${g}, ${b}`;
+        }
+    </script>
+</body>
+</html>
