@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handicraft Gallery</title>
+  <style>
+    /* General Styles */
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 70px;
+    margin-right: 10px;
+  }
+  
+  .site-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Navigation */
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .top-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    transition: color 0.3s ease;
+  }
+  
+  .top-nav ul li a:hover {
+    color: #e67e22;
+  }
+  
+  /* Authentication Button */
+  .auth .btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    background: #e67e22;
+    color: #fff;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  .auth .btn:hover {
+    background: #d35400;
+  }
+
+    /* Navigation Bar */
+    /* nav {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    } */
+
+    /* Container for the gallery content */
+    .container {
+      width: 90%;
+      max-width: 50%;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Each painting entry */
+    .painting {
+      margin-bottom: 40px;
+    }
+
+    .painting h2 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .painting img {
+      width: 100%;
+      max-width: 50;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .painting p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+		<div class="logo">
+		  <li><a href="index.html"/><img src="image/logo.png" alt="Logo" /></a></li>
+		  <span class="site-name">Handicraft Gallery</span>
+		</div>
+		<nav class="top-nav">
+		  <ul>
+        <li><a href="index.html"/>Home</a></li>
+        <li><a href="trending.html"/>Trending</a></li>
+        <li><a href="post.html"/>Post</a></li>
+        <li><a href="shop.html"/>Shop</a></li>
+        <li><a href="Event.html"/>Event</a></li>
+        <li><a href="Feedback.html"/>Feedback</a></li>
+        <li><a href="Support.html"/>Support</a></li>
+        <li><a href="newidea.html"/>Brush Game</a></li>
+        </ul>
+      </nav>
+		</nav>
+		<div class="auth">
+		  <a href="login.html" class="btn">Login/Register</a>
+		</div>
+	  </header>
+  <div class="container">
+    <h2>About Indian Handicrafts</h2>
+    <b>For thousands of years, people have been preserving cultural heritage in the form of traditional arts and crafts. The ethnic communities in India have a very rich tradition of keeping their art alive. For them, it is not just a source of income. Handicrafts are a cultural identity for these ethnic communities, and a reflection of their cultural history. Here are some of Indian traditional Handicrafts :
+    </b>
+    <br>
+    <u><h3>Here are some Indian Handicrafts from every corner of India :</h3></u>
+    <div class="painting">
+      <h1>1. Molela Clay Work </h1>
+      <img src="image/Molela-Clay-Work.jpg" alt="Madhubani Painting" />
+      <p>
+        Dating back to almost 5000 years ago, the legend says, a blind potter once dreamed of Lord Dharmaraja, who instructed him to dig clay at a certain location and create his sculpture out of it. Next morning, he created God’s image to fulfill the promise he made in his dreams. Later on, the craft was taken up by the future generations passing it on to the offsprings like a culture. Molela clay work or Molela Terracotta has its roots in Molela village of Rajsamand district of Rajasthan. Molela village is popular for its indulgence in creating delicate and enticing artwork with terracotta. 
+      </p>
+    </div>
+    <div class="painting">
+      <h1>2. Kotpad Textile</h1>
+      <img src="image/Kotpad-Textile.jpg" alt="Kotpad Textile" />
+      <p>
+        The richness of Indian textiles is reflected in the handloom products, which comprise the largest cottage industry of the country. Millions of looms are engaged in weaving cotton, silk, and other natural fibres across the country. The state of Odisha has one of the richest and oldest handloom traditions in India. The age old tribal weave “Kotpad” created by the Mirgan community of Kotpad village in the Koraput district of Odisha, has retained a distinct native identity. 
+      </p>
+    </div>
+    <div class="painting">
+        <h1>3. Kavad Art</h1>
+        <img src="image/Kavad-Art-of-Rajasthani.jpg" alt="Kavad Art" />
+        <p>
+            Kavad art is a traditional form of storytelling that originated in Rajasthan. It dates back to the sixteenth century, Kavads are portable shrines made of wood that contain several panels or doors that can be opened and closed. The Kavad tradition is a complex one with carpentry, artistry and storytelling rolled into one art.
+            It finds indirect mentions in religious texts like Tarikh-i-Firoz-Shahi of Afif, where it is referred to as a ‘Muhrik’ – a wooden table covered with paintings inside and out.
+        </p>
+    </div>
+    <div class="painting">
+        <h1>4. Kondapalli Toys</h1>
+        <img src="image/Toys-of-India-Kondapalli_toys.jpg" alt="Kondapalli Toys" />
+        <p>
+            Toys are an important part of childhood, as they educate the child on basic physiological, mental and emotional development. The activities and control that is required to understand and operate varying types of playthings, instil the sense of shape and colours, improved cognitive ability and flowers creativity in the child. However, toys may also pose as an important cultural asset. They tell stories of ancient lives and put into display the beliefs and traditions that exist among communities of people. They teach lessons and complete the mood and decor of a room. Consumers are attracted to traditional toys as they are a means to preserve the heritage and the craftsmen and artisans who depend upon their production for their livelihood.
+        </p>
+    </div>    <div class="painting">
+        <h1>5. Vibrant Batto Bai Dolls</h1>
+        <img src="image/Batto-Bai-Dolls-01.jpg" alt="Vibrant Batto Bai Dolls" />
+        <p>
+            The center of India is Madhya Pradesh, a state with a wonderful blend of cultural heritage and traditions and provisions that bring forth new ways of art and creativity. Around the variegated forms of folk art that are well preserved in this region, Batto Bai dolls are iconic artistic symbols of craftsmanship and the rich cultural background. Derived from the dusty soil of Madhya Pradesh, the region of these dolls is not merely toys; they are the manifestation of custom, story-telling, and artistic greatness as well. In this exploration, we follow the life journey of Batto Bai doll, beginning with the study of the doll’s birth, followed by the examination of the doll’s craftsmanship, investigating the doll’s cultural roles, and finally, highlighting what these dolls imply vis-à-vis the rich heritage of Madhya Pradesh.
+        </p>
+    </div>    <div class="painting">
+        <h1>6. Budithi Art</h1>
+        <img src="image/Andhra-Pradesh-Arts-and-Crafts-Budithi-Art-1.jpg" alt="Budithi Art" />
+        <p>
+            Budithi art, a unique and special style of metal handicrafts in India, is particularly famous in Andhra Pradesh. Budithi art was created and is still done in Srikakulam’s Budithi village. It is well-known for producing stunning metal handicrafts in both traditional and contemporary designs. Brass is the most common alloy utilized in this art form. This region’s wonderful brassware is gaining appeal these days. It was once part of the village’s tradition, but it is now a vocation for the residents. Budithi brassware has grown in popularity thanks to the efforts of the state government.
+        </p>
+
+    </div>    <div class="painting">
+        <h1>7. Jhabua-Dolls</h1>
+        <img src="image/The-Art-of-Jhabua-Dolls-01.jpg" alt="Jhabua-Dolls" />
+        <p>
+        In particular there is no history or story behind making these Jhabua dolls it is just made by the Bhil tribe people representing their culture. The history of Jhabua dolls is deeply entwined with the artistic tradition and cultural legacy of the Bhil people of Jhabua, Madhya Pradesh, India. This is an examination of the background and relevance of these distinctive wooden dolls: Jhabua dolls have been made for years by the Bhil tribe, who are renowned for their unique traditions, artistic talent, and close ties to the natural world. Families carry along the skill of creating these dolls, with each artist adding their own unique style and cultural significance to their works. The mythology, customs, and tribal traditions of the Bhil community are reflected in the jabua dolls. Every doll could have a symbolic meaning, signifying animals, spirits, gods, or folkloric figures.
+        </p>
+    </div>    <div class="painting">
+        <h1>8. Kheta</h1>
+        <img src="image/Kheta-Embroidery-02.jpg" alt="Kheta" />
+        <p>
+          The Kheta quilts are usually used as blankets for newborn children or as mattresses for newlywed couples. Unlike, many other embroidery and quilting techniques, the Kheta quilts are designed single handedly by one woman alone. Each Kheta quilt is a signature style and design of one person. Also, the art of learning this form of embroidery and quilting is taught to as little as 10 year-old girls. Young girls pick it up and continue to create differently designed quilts throughout their life. 
+        </p>
+    </div>    <div class="painting">
+        <h1>9. Paper Crafts</h1>
+        <img src="image/paper-crafts-of-India-01.jpg" alt="Paper Crafts" />
+        <p>
+          It is really hard to trace the history of paper crafts in India. It is understood that paper replaced the palm leaf used in ancient times, and the Arabs learned the art of making paper from the Chinese in the 8th century. The oldest known archaeological fragments of paper was found in the 2nd century BCE, in China. The Persian name for paper is kagaz, which became popular in India by the 14th century. Under the Mughal rule, the paper was extensively used both in royal and administrative works, strikingly in the form of farmans or scrolls of messages. It was also during this time that paper craftsmen lived together in localities known as the ‘kagazi mohallas’.
+        </p>
+    </div>    <div class="painting">
+        <h1>10. Art of Papier Mache </h1>
+        <img src="image/Kashmir-Home-to-Multiple-Handicrafts-Papier-Mache-.jpg" alt="Art of Papier Mache " />
+        <p>
+          Papier Mache is an art form that was cultivated in China. The Chinese paper-modelling art form from the Hans Dynasty travelled far and wide in the wake of craft trade across the globe. The art form came to India in the 14th Century with Mir Syed Ali Hamdani, a Persian mystic.  
+          The Kashmiri style of representing Papier Mache is unique. The intrinsic designs, the colourful dyes, and different objects made with Papier Mache are of the highest quality. There are two steps in making Paper Mache. The first step is called Sakhtsazi, and the second step is called Naqashi. 
+        </p>
+    </div>    
